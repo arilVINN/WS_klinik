@@ -6,7 +6,7 @@ graph TD
     Eureka[🔍 Eureka Server <br> Service Discovery - Port: 90]
 
     %% Subgraph Service Inventaris Obat (MySQL)
-    subgraph Serv_Inventaris [📦 Service Inventaris Obat]
+    subgraph Serv_Inventaris [📦 Service Inventaris]
         Inv_Ctrl[Inventaris Obat Controller]
         Inv_DTO[Inventaris Obat DTO Layer]
         Inv_Repo[Inventaris Obat Repository <br> Spring Data JPA]
