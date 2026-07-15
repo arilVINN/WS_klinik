@@ -2,8 +2,8 @@
 graph TD
     %% Definisi Aktor & Infrastruktur Utama
     Client[📱 Client App / Web / Mobile]
-    Gateway[🌐 API Gateway <br> Port: 8080]
-    Eureka[🔍 Eureka Server <br> Service Discovery - Port: 8761]
+    Gateway[🌐 API Gateway <br> Port: 67]
+    Eureka[🔍 Eureka Server <br> Service Discovery - Port: 90]
 
     %% Subgraph Service Inventaris Obat (MySQL)
     subgraph Serv_Inventaris [📦 Service Inventaris Obat]
