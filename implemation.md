@@ -92,3 +92,94 @@ laporan berisi tentang laporan nama pasien, harga periksa/tindakan , dan obatan 
 
 jadi flow nya 
 pasien akan bikin jadwal periksa/tindakan, jika belom status nya belom, setelah dilakukan periksa/tindakan, akan diberikan obat atau tidak, nanti status nya menjadi sudah periksa, jika ada obat yang perlu akan memberikan resep dan mengurangi stok obat di investaris, dan akan  total nya akan masuk dalam laporan keuangan.
+```mermaid
+erDiagram
+    JADWAL ||--o{ RESEP : "diberikan"
+    INVENTARIS ||--o{ RESEP : "terdapat dalam"
+    JADWAL ||--|| LAPORAN : "menghasilkan"
+
+    INVENTARIS {
+        int id_obat PK
+        string nama_obat
+        int harga_obat
+        int stok_obat
+    }
+
+    JADWAL {
+        int id_jadwal PK
+        string nama_pasien
+        datetime jadwal_periksa
+        string periksa_tindakan
+        int harga_tindakan
+        string status "belum / sudah"
+    }
+
+    RESEP {
+        int id_resep PK
+        int id_jadwal FK
+        string penyakit_keluhan
+        int id_obat FK
+        int jumlah_obat
+    }
+
+    LAPORAN {
+        int id_laporan PK
+        int id_jadwal FK
+        string nama_pasien
+        int harga_tindakan
+        int total_harga_obat
+        int grand_total
+    }
+```
+```mermaid
+classDiagram
+    class JADWAL {
+        -int id_jadwal
+        -String nama_pasien
+        -datetime jadwal_periksa
+        -String periksa_tindakan
+        -int harga_tindakan
+        -String status
+        +buatJadwal() void
+        +ubahStatus(statusBaru: String) void
+        +getHargaTindakan() int
+    }
+
+    class INVENTARIS {
+        -int id_obat
+        -String nama_obat
+        -int harga_obat
+        -int stok_obat
+        +cekStok() int
+        +kurangiStok(jumlah: int) boolean
+        +getHargaObat() int
+    }
+
+    class RESEP {
+        -int id_resep
+        -int id_jadwal
+        -String penyakit_keluhan
+        -int id_obat
+        -int jumlah_obat
+        +catatKeluhan(keluhan: String) void
+        +tambahResep(idObat: int, jumlah: int) void
+        +hitungTotalHargaObat() int
+    }
+
+    class LAPORAN {
+        -int id_laporan
+        -int id_jadwal
+        -String nama_pasien
+        -int harga_tindakan
+        -int total_harga_obat
+        -int grand_total
+        +generateLaporan() void
+        +kalkulasiGrandTotal() int
+        +cetakTagihan() void
+    }
+
+    %% Relasi antar Class
+    JADWAL "1" *-- "0..*" RESEP : memiliki
+    INVENTARIS "1" <-- "0..*" RESEP : mengambil data obat
+    JADWAL "1" --> "1" LAPORAN : memicu pembuatan
+```
