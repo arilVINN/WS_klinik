@@ -82,13 +82,13 @@ graph TD
     class Client client;
 ```
 jadi 
-inevstaris berisi tentang list obat obatan dan harga obat
+inevstaris berisi tentang list obat obatan dan harga obat(port 61)
 
-jadwal berisi tentang pasien,jadwal periksa, periksa/tindakan, status periksa(belum/sudah)
+jadwal berisi tentang pasien,jadwal periksa, periksa/tindakan, status periksa(belum/sudah)(port 63)
 
-resep berisi tentang resep obat setiap penyakit/setelah tindakan
+resep berisi tentang resep obat setiap penyakit/setelah tindakan(port 62)
 
-laporan berisi tentang laporan nama pasien, harga periksa/tindakan , dan obatan yang dibeli dan total semua dari periksa/tindakan dan harga obat jika ada
+laporan berisi tentang laporan nama pasien, harga periksa/tindakan , dan obatan yang dibeli dan total semua dari periksa/tindakan dan harga obat jika ada(port 64)
 
 jadi flow nya 
 pasien akan bikin jadwal periksa/tindakan, jika belom status nya belom, setelah dilakukan periksa/tindakan, akan diberikan obat atau tidak, nanti status nya menjadi sudah periksa, jika ada obat yang perlu akan memberikan resep dan mengurangi stok obat di investaris, dan akan  total nya akan masuk dalam laporan keuangan.
