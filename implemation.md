@@ -133,6 +133,7 @@ erDiagram
 ```
 ```mermaid
 classDiagram
+    %% Class Jadwal oleh Josan
     class JADWAL {
         -int id_jadwal
         -String nama_pasien
@@ -144,7 +145,9 @@ classDiagram
         +ubahStatus(statusBaru: String) void
         +getHargaTindakan() int
     }
+    note for JADWAL "Dibuat oleh: Josan"
 
+    %% Class Inventaris oleh Panji
     class INVENTARIS {
         -int id_obat
         -String nama_obat
@@ -154,7 +157,9 @@ classDiagram
         +kurangiStok(jumlah: int) boolean
         +getHargaObat() int
     }
+    note for INVENTARIS "Dibuat oleh: Panji"
 
+    %% Class Resep oleh Aldo
     class RESEP {
         -int id_resep
         -int id_jadwal
@@ -165,7 +170,9 @@ classDiagram
         +tambahResep(idObat: int, jumlah: int) void
         +hitungTotalHargaObat() int
     }
+    note for RESEP "Dibuat oleh: Aldo"
 
+    %% Class Laporan oleh Aldo
     class LAPORAN {
         -int id_laporan
         -int id_jadwal
@@ -177,6 +184,7 @@ classDiagram
         +kalkulasiGrandTotal() int
         +cetakTagihan() void
     }
+    note for LAPORAN "Dibuat oleh: Aldo"
 
     %% Relasi antar Class
     JADWAL "1" *-- "0..*" RESEP : memiliki
