@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ResepRepository extends MongoRepository<ResepModel, String> {
     List<ResepModel> findByIdJadwal(Integer idJadwal);
-    List<ResepModel> findByNamaDokterContainingIgnoreCase(String namaDokter);
+    List<ResepModel> findByNamaPasienContainingIgnoreCase(String namaPasien);
 }

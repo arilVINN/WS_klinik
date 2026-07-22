@@ -13,8 +13,9 @@ public class ResepModel {
     private Integer idJadwal;
     private String penyakitKeluhan;
     private Integer idObat;
+    private String namaObat;
     private Integer jumlahObat;
-    private String namaDokter;
+    private String namaPasien;
     private String dosisAturanPakai;
     private Double hargaSatuan;
     private Double totalHargaObat;
@@ -24,13 +25,14 @@ public class ResepModel {
         this.tanggalResep = LocalDateTime.now();
     }
 
-    public ResepModel(Integer idJadwal, String penyakitKeluhan, Integer idObat, Integer jumlahObat, 
-                 String namaDokter, String dosisAturanPakai, Double hargaSatuan, Double totalHargaObat) {
+    public ResepModel(Integer idJadwal, String penyakitKeluhan, Integer idObat, String namaObat, Integer jumlahObat, 
+                 String namaPasien, String dosisAturanPakai, Double hargaSatuan, Double totalHargaObat) {
         this.idJadwal = idJadwal;
         this.penyakitKeluhan = penyakitKeluhan;
         this.idObat = idObat;
+        this.namaObat = namaObat;
         this.jumlahObat = jumlahObat;
-        this.namaDokter = namaDokter;
+        this.namaPasien = namaPasien;
         this.dosisAturanPakai = dosisAturanPakai;
         this.hargaSatuan = hargaSatuan;
         this.totalHargaObat = totalHargaObat;
@@ -69,6 +71,14 @@ public class ResepModel {
         this.idObat = idObat;
     }
 
+    public String getNamaObat() {
+        return namaObat;
+    }
+
+    public void setNamaObat(String namaObat) {
+        this.namaObat = namaObat;
+    }
+
     public Integer getJumlahObat() {
         return jumlahObat;
     }
@@ -77,12 +87,12 @@ public class ResepModel {
         this.jumlahObat = jumlahObat;
     }
 
-    public String getNamaDokter() {
-        return namaDokter;
+    public String getNamaPasien() {
+        return namaPasien;
     }
 
-    public void setNamaDokter(String namaDokter) {
-        this.namaDokter = namaDokter;
+    public void setNamaPasien(String namaPasien) {
+        this.namaPasien = namaPasien;
     }
 
     public String getDosisAturanPakai() {
@@ -122,8 +132,9 @@ public class ResepModel {
         this.penyakitKeluhan = keluhan;
     }
 
-    public void tambahResep(int idObat, int jumlah) {
+    public void tambahResep(int idObat, String namaObat, int jumlah) {
         this.idObat = idObat;
+        this.namaObat = namaObat;
         this.jumlahObat = jumlah;
     }
 

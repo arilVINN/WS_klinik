@@ -34,8 +34,8 @@ public class ResepService {
         return resepRepository.findByIdJadwal(idJadwal);
     }
 
-    public List<ResepModel> getResepByNamaDokter(String namaDokter) {
-        return resepRepository.findByNamaDokterContainingIgnoreCase(namaDokter);
+    public List<ResepModel> getResepByNamaPasien(String namaPasien) {
+        return resepRepository.findByNamaPasienContainingIgnoreCase(namaPasien);
     }
 
     public ResepModel simpanResep(ResepModel resep) {
@@ -71,14 +71,15 @@ public class ResepService {
                 dto.getIdJadwal(),
                 dto.getPenyakitKeluhan(),
                 dto.getIdObat(),
+                dto.getNamaObat(),
                 jumlah,
-                dto.getNamaDokter(),
+                dto.getNamaPasien(),
                 dto.getDosisAturanPakai(),
                 harga,
                 null // let hitungTotalHargaObat handle it
         );
         resep.catatKeluhan(dto.getPenyakitKeluhan());
-        resep.tambahResep(dto.getIdObat() != null ? dto.getIdObat() : 0, jumlah);
+        resep.tambahResep(dto.getIdObat() != null ? dto.getIdObat() : 0, dto.getNamaObat(), jumlah);
         resep.setTotalHargaObat((double) resep.hitungTotalHargaObat());
 
         return simpanResep(resep);
@@ -91,8 +92,9 @@ public class ResepService {
             if (dto.getIdJadwal() != null) r.setIdJadwal(dto.getIdJadwal());
             if (dto.getPenyakitKeluhan() != null) r.setPenyakitKeluhan(dto.getPenyakitKeluhan());
             if (dto.getIdObat() != null) r.setIdObat(dto.getIdObat());
+            if (dto.getNamaObat() != null) r.setNamaObat(dto.getNamaObat());
             if (dto.getJumlahObat() != null) r.setJumlahObat(dto.getJumlahObat());
-            if (dto.getNamaDokter() != null) r.setNamaDokter(dto.getNamaDokter());
+            if (dto.getNamaPasien() != null) r.setNamaPasien(dto.getNamaPasien());
             if (dto.getDosisAturanPakai() != null) r.setDosisAturanPakai(dto.getDosisAturanPakai());
             if (dto.getHargaSatuan() != null) r.setHargaSatuan(dto.getHargaSatuan());
             

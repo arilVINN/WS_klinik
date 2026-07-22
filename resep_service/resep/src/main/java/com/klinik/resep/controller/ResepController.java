@@ -1,19 +1,28 @@
 package com.klinik.resep.controller;
 
-import com.klinik.resep.config.DataSeederResep;
-import com.klinik.resep.dto.ResepDTO;
-import com.klinik.resep.model.ResepModel;
-import com.klinik.resep.service.ResepService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.klinik.resep.config.DataSeederResep;
+import com.klinik.resep.dto.ResepDTO;
+import com.klinik.resep.model.ResepModel;
+import com.klinik.resep.service.ResepService;
+
 @RestController
-@RequestMapping("/api/v1/resep")
+@RequestMapping("/api/resep")
 public class ResepController {
 
     @Autowired
@@ -22,7 +31,7 @@ public class ResepController {
     @Autowired
     private DataSeederResep dataSeederResep;
 
-    // GET semua resep - /api/v1/resep/getall
+    // GET semua resep - /api/resep/getall
     @GetMapping("/getall")
     public Map<String, Object> getAllResep() {
         Map<String, Object> response = new HashMap<>();
@@ -33,7 +42,7 @@ public class ResepController {
         return response;
     }
 
-    // GET detail resep by ID - /api/v1/resep/get/{id}
+    // GET detail resep by ID - /api/resep/get/{id}
     @GetMapping("/get/{id}")
     public Map<String, Object> getResepById(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -48,7 +57,7 @@ public class ResepController {
         return response;
     }
 
-    // GET resep by idJadwal - /api/v1/resep/jadwal/{idJadwal}
+    // GET resep by idJadwal - /api/resep/jadwal/{idJadwal}
     @GetMapping("/jadwal/{idJadwal}")
     public Map<String, Object> getResepByIdJadwal(@PathVariable("idJadwal") Integer idJadwal) {
         Map<String, Object> response = new HashMap<>();
@@ -60,19 +69,19 @@ public class ResepController {
         return response;
     }
 
-    // GET resep by nama dokter - /api/v1/resep/dokter/{namaDokter}
-    @GetMapping("/dokter/{namaDokter}")
-    public Map<String, Object> getResepByNamaDokter(@PathVariable("namaDokter") String namaDokter) {
+    // GET resep by nama pasien - /api/v1/resep/pasien/{namaPasien}
+    @GetMapping("/pasien/{namaPasien}")
+    public Map<String, Object> getResepByNamaPasien(@PathVariable("namaPasien") String namaPasien) {
         Map<String, Object> response = new HashMap<>();
-        List<ResepModel> list = resepService.getResepByNamaDokter(namaDokter);
+        List<ResepModel> list = resepService.getResepByNamaPasien(namaPasien);
         response.put("status", "success");
-        response.put("namaDokter", namaDokter);
+        response.put("namaPasien", namaPasien);
         response.put("jumlah", list.size());
         response.put("data", list);
         return response;
     }
 
-    // POST tambah resep baru - /api/v1/resep/add
+    // POST tambah resep baru - /api/resep/add
     @PostMapping("/add")
     public Map<String, Object> tambahResep(@RequestBody ResepDTO dto) {
         Map<String, Object> response = new HashMap<>();
@@ -89,7 +98,7 @@ public class ResepController {
         return response;
     }
 
-    // PUT update resep - /api/v1/resep/update?id=xxx
+    // PUT update resep - /api/resep/update?id=xxx
     @PutMapping("/update")
     public Map<String, Object> updateResep(
             @RequestParam("id") String id,
@@ -107,7 +116,7 @@ public class ResepController {
         return response;
     }
 
-    // DELETE hapus resep - /api/v1/resep/delete/{id}
+    // DELETE hapus resep - /api/resep/delete/{id}
     @DeleteMapping("/delete/{id}")
     public Map<String, Object> hapusResep(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -122,7 +131,7 @@ public class ResepController {
         return response;
     }
 
-    // POST reset dummy data - /api/v1/resep/reset-dummy
+    // POST reset dummy data - /api/resep/reset-dummy
     @PostMapping("/reset-dummy")
     public Map<String, Object> resetDummyData() {
         Map<String, Object> response = new HashMap<>();

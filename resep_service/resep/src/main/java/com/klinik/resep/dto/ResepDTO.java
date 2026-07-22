@@ -4,20 +4,22 @@ public class ResepDTO {
     private Integer idJadwal;
     private String penyakitKeluhan;
     private Integer idObat;
+    private String namaObat;
     private Integer jumlahObat;
-    private String namaDokter;
+    private String namaPasien;
     private String dosisAturanPakai;
     private Double hargaSatuan;
 
     public ResepDTO() {}
 
-    public ResepDTO(Integer idJadwal, String penyakitKeluhan, Integer idObat, Integer jumlahObat, 
-                    String namaDokter, String dosisAturanPakai, Double hargaSatuan) {
+    public ResepDTO(Integer idJadwal, String penyakitKeluhan, Integer idObat, String namaObat, Integer jumlahObat, 
+                    String namaPasien, String dosisAturanPakai, Double hargaSatuan) {
         this.idJadwal = idJadwal;
         this.penyakitKeluhan = penyakitKeluhan;
         this.idObat = idObat;
+        this.namaObat = namaObat;
         this.jumlahObat = jumlahObat;
-        this.namaDokter = namaDokter;
+        this.namaPasien = namaPasien;
         this.dosisAturanPakai = dosisAturanPakai;
         this.hargaSatuan = hargaSatuan;
     }
@@ -46,6 +48,14 @@ public class ResepDTO {
         this.idObat = idObat;
     }
 
+    public String getNamaObat() {
+        return namaObat;
+    }
+
+    public void setNamaObat(String namaObat) {
+        this.namaObat = namaObat;
+    }
+
     public Integer getJumlahObat() {
         return jumlahObat;
     }
@@ -54,12 +64,12 @@ public class ResepDTO {
         this.jumlahObat = jumlahObat;
     }
 
-    public String getNamaDokter() {
-        return namaDokter;
+    public String getNamaPasien() {
+        return namaPasien;
     }
 
-    public void setNamaDokter(String namaDokter) {
-        this.namaDokter = namaDokter;
+    public void setNamaPasien(String namaPasien) {
+        this.namaPasien = namaPasien;
     }
 
     public String getDosisAturanPakai() {
