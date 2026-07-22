@@ -1,0 +1,2 @@
+spring.application.name=jadwal
+app.firebase.config-path=classpath:serviceAccountKey.json
