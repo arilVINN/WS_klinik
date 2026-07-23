@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: jadwal
+
+app:
+  firebase:
+    config-path: classpath:serviceAccountKey.json
+    database-id: ws-kliniktest
+
+server:
+  port: 63
