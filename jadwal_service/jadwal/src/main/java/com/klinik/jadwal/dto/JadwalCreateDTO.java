@@ -1,12 +1,10 @@
 package com.klinik.jadwal.dto;
 
-import java.time.LocalDateTime;
-
 public class JadwalCreateDTO {
     private String nama_pasien;
-    private LocalDateTime jadwal_periksa;
+    private String jadwal_periksa; // Changed to String to align with Model and avoid serialization issues
     private String periksa_tindakan;
-    private float harga_periksa;
+    private double harga_periksa;
     private String status;
 
     public String getNama_pasien() {
@@ -17,11 +15,11 @@ public class JadwalCreateDTO {
         this.nama_pasien = nama_pasien;
     }
 
-    public LocalDateTime getJadwal_periksa() {
+    public String getJadwal_periksa() {
         return jadwal_periksa;
     }
 
-    public void setJadwal_periksa(LocalDateTime jadwal_periksa) {
+    public void setJadwal_periksa(String jadwal_periksa) {
         this.jadwal_periksa = jadwal_periksa;
     }
 
@@ -33,11 +31,11 @@ public class JadwalCreateDTO {
         this.periksa_tindakan = periksa_tindakan;
     }
 
-    public float getHarga_periksa() {
+    public double getHarga_periksa() {
         return harga_periksa;
     }
 
-    public void setHarga_periksa(float harga_periksa) {
+    public void setHarga_periksa(double harga_periksa) {
         this.harga_periksa = harga_periksa;
     }
 

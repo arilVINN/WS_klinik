@@ -1,13 +1,11 @@
 package com.klinik.jadwal.model;
 
-import java.time.LocalDateTime;
-
 public class JadwalModel {
     private int id_jadwal;
     private String nama_pasien;
-    private LocalDateTime jadwal_periksa;
+    private String jadwal_periksa;
     private String periksa_tindakan;
-    private float harga_periksa;
+    private double harga_periksa; // Changed to double to match DTO and prevent precision loss issues
     private String status;
 
     public int getId_jadwal() {
@@ -26,11 +24,11 @@ public class JadwalModel {
         this.nama_pasien = nama_pasien;
     }
 
-    public LocalDateTime getJadwal_periksa() {
+    public String getJadwal_periksa() {
         return jadwal_periksa;
     }
 
-    public void setJadwal_periksa(LocalDateTime jadwal_periksa) {
+    public void setJadwal_periksa(String jadwal_periksa) {
         this.jadwal_periksa = jadwal_periksa;
     }
 
@@ -42,11 +40,11 @@ public class JadwalModel {
         this.periksa_tindakan = periksa_tindakan;
     }
 
-    public float getHarga_periksa() {
+    public double getHarga_periksa() {
         return harga_periksa;
     }
 
-    public void setHarga_periksa(float harga_periksa) {
+    public void setHarga_periksa(double harga_periksa) {
         this.harga_periksa = harga_periksa;
     }
 

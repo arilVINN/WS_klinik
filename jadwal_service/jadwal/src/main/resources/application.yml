@@ -5,7 +5,7 @@ spring:
 app:
   firebase:
     config-path: classpath:serviceAccountKey.json
+    database-id: ws-kliniktest
 
-gcp:
-  firestore:
-    credentials-path: classpath:serviceAccountKey.json
+server:
+  port: 63
