@@ -1,2 +1,11 @@
-spring.application.name=jadwal
-app.firebase.config-path=classpath:serviceAccountKey.json
+spring:
+  application:
+    name: jadwal
+
+app:
+  firebase:
+    config-path: classpath:serviceAccountKey.json
+
+gcp:
+  firestore:
+    credentials-path: classpath:serviceAccountKey.json
