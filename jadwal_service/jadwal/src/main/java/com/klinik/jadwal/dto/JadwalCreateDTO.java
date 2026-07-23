@@ -2,9 +2,9 @@ package com.klinik.jadwal.dto;
 
 public class JadwalCreateDTO {
     private String nama_pasien;
-    private String jadwal_periksa; // Changed to String to align with Model and avoid serialization issues
+    private String jadwal_periksa;
     private String periksa_tindakan;
-    private double harga_periksa;
+    private double harga_periksa; // Changed to double to prevent precision loss errors
     private String status;
 
     public String getNama_pasien() {
