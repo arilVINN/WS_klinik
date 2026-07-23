@@ -59,7 +59,7 @@ public class ResepController {
 
     // GET resep by idJadwal - /api/resep/jadwal/{idJadwal}
     @GetMapping("/jadwal/{idJadwal}")
-    public Map<String, Object> getResepByIdJadwal(@PathVariable("idJadwal") Integer idJadwal) {
+    public Map<String, Object> getResepByIdJadwal(@PathVariable("idJadwal") String idJadwal) {
         Map<String, Object> response = new HashMap<>();
         List<ResepModel> list = resepService.getResepByIdJadwal(idJadwal);
         response.put("status", "success");
@@ -85,7 +85,7 @@ public class ResepController {
     @PostMapping("/add")
     public Map<String, Object> tambahResep(@RequestBody ResepDTO dto) {
         Map<String, Object> response = new HashMap<>();
-        if (dto.getIdJadwal() == null || dto.getPenyakitKeluhan() == null) {
+        if (dto.getIdJadwal() == null || dto.getIdJadwal().trim().isEmpty() || dto.getPenyakitKeluhan() == null) {
             response.put("status", "error");
             response.put("message", "idJadwal dan penyakitKeluhan wajib diisi");
             return response;

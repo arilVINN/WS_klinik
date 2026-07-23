@@ -34,7 +34,7 @@ public class LaporanRepository {
         return mongoTemplate.findById(id, LaporanModel.class);
     }
 
-    public List<LaporanModel> findByIdJadwal(Integer idJadwal) {
+    public List<LaporanModel> findByIdJadwal(String idJadwal) {
         Query query = new Query(Criteria.where("idJadwal").is(idJadwal));
         return mongoTemplate.find(query, LaporanModel.class);
     }

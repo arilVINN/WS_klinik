@@ -14,7 +14,7 @@ import com.klinik.laporan.model.LaporanModel;
 import com.klinik.laporan.service.LaporanService;
 
 @RestController
-@RequestMapping("/laporan")
+@RequestMapping("/report")
 public class LaporanController {
 
     @Autowired
@@ -51,7 +51,7 @@ public class LaporanController {
 
     // GET laporan by idJadwal - /api/laporan/jadwal/{idJadwal}
     @GetMapping("/jadwal/{idJadwal}")
-    public Map<String, Object> getLaporanByIdJadwal(@PathVariable("idJadwal") Integer idJadwal) {
+    public Map<String, Object> getLaporanByIdJadwal(@PathVariable("idJadwal") String idJadwal) {
         Map<String, Object> response = new HashMap<>();
         List<LaporanModel> list = laporanService.getLaporanByIdJadwal(idJadwal);
         response.put("status", "success");

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/jadwal")
+@RequestMapping("/schedule")
 @Tag(name = "Jadwal", description = "API untuk mengelola jadwal layanan klinik")
 public class JadwalController {
     @Autowired
@@ -33,9 +33,8 @@ public class JadwalController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Dapatkan jadwal berdasarkan ID", description = "Mengambil data jadwal pemeriksaan berdasarkan ID")
-    public JadwalModel getJadwalById(@PathVariable int id) {
+    @Operation(summary = "Dapatkan jadwal by ID", description = "Mengambil detail jadwal pemeriksaan berdasarkan ID Firestore")
+    public JadwalModel getJadwalById(@PathVariable("id") String id) {
         return js.getJadwalById(id);
     }
 }
-

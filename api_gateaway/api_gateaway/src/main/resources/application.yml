@@ -15,7 +15,7 @@ spring:
         - id: jadwal-service
           uri: http://localhost:63
           predicates:
-            - Path=/jadwal, /jadwal/**
+            - Path=/schedule, /schedule/**
 
         - id: resep-service
           uri: http://localhost:62
@@ -25,7 +25,7 @@ spring:
         - id: laporan-service
           uri: http://localhost:64
           predicates:
-            - Path=/laporan, /laporan/**
+            - Path=/report, /report/**
 
 eureka:
   client:

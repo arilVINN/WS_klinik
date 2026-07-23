@@ -33,12 +33,12 @@ public class LaporanService {
         return Optional.ofNullable(laporan);
     }
 
-    public List<LaporanModel> getLaporanByIdJadwal(Integer idJadwal) {
+    public List<LaporanModel> getLaporanByIdJadwal(String idJadwal) {
         return laporanRepository.findByIdJadwal(idJadwal);
     }
 
     public LaporanModel generateLaporan(LaporanDTO dto) {
-        if (dto.getIdJadwal() == null) {
+        if (dto.getIdJadwal() == null || dto.getIdJadwal().trim().isEmpty()) {
             throw new RuntimeException("ID Jadwal wajib diisi");
         }
 
@@ -60,7 +60,15 @@ public class LaporanService {
 
         String namaPasien = (String) jadwal.get("nama_pasien");
         Number hargaPeriksaNum = (Number) jadwal.get("harga_periksa");
-        Double hargaTindakan = hargaPeriksaNum != null ? hargaPeriksaNum.doubleValue() : 0.0;
+        if (hargaPeriksaNum == null) {
+            hargaPeriksaNum = (Number) jadwal.get("harga_tindakan");
+        }
+        Double hargaTindakan = 0.0;
+        if (hargaPeriksaNum != null && hargaPeriksaNum.doubleValue() > 0) {
+            hargaTindakan = hargaPeriksaNum.doubleValue();
+        } else if (dto.getHargaTindakan() != null) {
+            hargaTindakan = dto.getHargaTindakan();
+        }
         Double totalObat = dto.getTotalHargaObat() != null ? dto.getTotalHargaObat() : 0.0;
 
         LaporanModel laporan = new LaporanModel(

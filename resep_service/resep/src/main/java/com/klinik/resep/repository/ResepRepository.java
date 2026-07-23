@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ResepRepository extends MongoRepository<ResepModel, String> {
-    List<ResepModel> findByIdJadwal(Integer idJadwal);
+    List<ResepModel> findByIdJadwal(String idJadwal);
     List<ResepModel> findByNamaPasienContainingIgnoreCase(String namaPasien);
 }

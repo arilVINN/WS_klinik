@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jadwal-service
+    name: jadwal
 
 app:
   firebase:
@@ -9,10 +9,3 @@ app:
 
 server:
   port: 63
-
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:90/eureka}
-  instance:
-    prefer-ip-address: true

@@ -17,7 +17,7 @@ import com.klinik.inventaris.dto.RestockDTO;
 import com.klinik.inventaris.service.InventoryService;
 
 @RestController
-@RequestMapping("/inventaris")
+@RequestMapping("/inventory")
 public class InventoryController {
 
     @Autowired

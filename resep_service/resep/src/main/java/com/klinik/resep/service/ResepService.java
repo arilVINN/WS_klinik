@@ -31,7 +31,7 @@ public class ResepService {
         return resepRepository.findById(id);
     }
 
-    public List<ResepModel> getResepByIdJadwal(Integer idJadwal) {
+    public List<ResepModel> getResepByIdJadwal(String idJadwal) {
         return resepRepository.findByIdJadwal(idJadwal);
     }
 
@@ -81,7 +81,7 @@ public class ResepService {
                 null // let hitungTotalHargaObat handle it
         );
         resep.catatKeluhan(dto.getPenyakitKeluhan());
-        resep.tambahResep(dto.getIdObat() != null ? dto.getIdObat() : 0, dto.getNamaObat(), jumlah);
+        resep.tambahResep(dto.getIdObat() != null ? dto.getIdObat() : 0L, dto.getNamaObat(), jumlah);
         resep.setTotalHargaObat((double) resep.hitungTotalHargaObat());
 
         return simpanResep(resep);

@@ -1,7 +1,7 @@
 package com.klinik.laporan.dto;
 
 public class LaporanDTO {
-    private Integer idJadwal;
+    private String idJadwal;
     private String namaPasien;
     private Double hargaTindakan;
     private Double totalHargaObat;
@@ -9,7 +9,7 @@ public class LaporanDTO {
 
     public LaporanDTO() {}
 
-    public LaporanDTO(Integer idJadwal, String namaPasien, Double hargaTindakan, 
+    public LaporanDTO(String idJadwal, String namaPasien, Double hargaTindakan, 
                       Double totalHargaObat, String metodePembayaran) {
         this.idJadwal = idJadwal;
         this.namaPasien = namaPasien;
@@ -18,11 +18,11 @@ public class LaporanDTO {
         this.metodePembayaran = metodePembayaran;
     }
 
-    public Integer getIdJadwal() {
+    public String getIdJadwal() {
         return idJadwal;
     }
 
-    public void setIdJadwal(Integer idJadwal) {
+    public void setIdJadwal(String idJadwal) {
         this.idJadwal = idJadwal;
     }
 

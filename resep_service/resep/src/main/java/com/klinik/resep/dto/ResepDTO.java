@@ -1,9 +1,9 @@
 package com.klinik.resep.dto;
 
 public class ResepDTO {
-    private Integer idJadwal;
+    private String idJadwal;
     private String penyakitKeluhan;
-    private Integer idObat;
+    private Long idObat;
     private String namaObat;
     private Integer jumlahObat;
     private String namaPasien;
@@ -12,7 +12,7 @@ public class ResepDTO {
 
     public ResepDTO() {}
 
-    public ResepDTO(Integer idJadwal, String penyakitKeluhan, Integer idObat, String namaObat, Integer jumlahObat, 
+    public ResepDTO(String idJadwal, String penyakitKeluhan, Long idObat, String namaObat, Integer jumlahObat, 
                     String namaPasien, String dosisAturanPakai, Double hargaSatuan) {
         this.idJadwal = idJadwal;
         this.penyakitKeluhan = penyakitKeluhan;
@@ -24,11 +24,11 @@ public class ResepDTO {
         this.hargaSatuan = hargaSatuan;
     }
 
-    public Integer getIdJadwal() {
+    public String getIdJadwal() {
         return idJadwal;
     }
 
-    public void setIdJadwal(Integer idJadwal) {
+    public void setIdJadwal(String idJadwal) {
         this.idJadwal = idJadwal;
     }
 
@@ -40,11 +40,11 @@ public class ResepDTO {
         this.penyakitKeluhan = penyakitKeluhan;
     }
 
-    public Integer getIdObat() {
+    public Long getIdObat() {
         return idObat;
     }
 
-    public void setIdObat(Integer idObat) {
+    public void setIdObat(Long idObat) {
         this.idObat = idObat;
     }
 

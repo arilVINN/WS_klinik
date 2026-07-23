@@ -19,10 +19,10 @@ public class JadwalRepository {
     private static final String COLLECTION_NAME = "jadwal";
 
     public void save(JadwalModel jadwal) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = firestore.collection(COLLECTION_NAME)
-                .document(String.valueOf(jadwal.getId_jadwal()));
-        ApiFuture<WriteResult> result = docRef.set(jadwal);
-        result.get(); // blocks until write is complete
+        DocumentReference docRef = firestore.collection(COLLECTION_NAME).document();
+        jadwal.setId_jadwal(docRef.getId()); // simpan ID acak tersebut ke objek jadwal
+        docRef.set(jadwal);
+
     }
 
     public List<JadwalModel> findAll() throws ExecutionException, InterruptedException {
@@ -36,9 +36,8 @@ public class JadwalRepository {
         return list;
     }
 
-    public JadwalModel findById(int id_jadwal) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = firestore.collection(COLLECTION_NAME)
-                .document(String.valueOf(id_jadwal));
+    public JadwalModel findById(String id) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = firestore.collection(COLLECTION_NAME).document(id);
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         if (document.exists()) {

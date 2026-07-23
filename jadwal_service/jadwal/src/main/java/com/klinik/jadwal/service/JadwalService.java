@@ -31,7 +31,7 @@ public class JadwalService {
         }
     }
 
-    public JadwalModel getJadwalById(int id) {
+    public JadwalModel getJadwalById(String id) {
         try {
             return jr.findById(id);
         } catch (Exception e) {
