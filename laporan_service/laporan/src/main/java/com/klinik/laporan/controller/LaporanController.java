@@ -13,8 +13,12 @@ import com.klinik.laporan.dto.LaporanDTO;
 import com.klinik.laporan.model.LaporanModel;
 import com.klinik.laporan.service.LaporanService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/laporan")
+@Tag(name = "Laporan Service", description = "API endpoints untuk laporan keuangan klinik")
 public class LaporanController {
 
     @Autowired
@@ -24,6 +28,7 @@ public class LaporanController {
     private DataSeederLaporan dataSeederLaporan;
 
     // GET semua laporan keuangan - /api/laporan/getall
+    @Operation(summary = "Ambil semua laporan", description = "Mengambil daftar seluruh laporan keuangan")
     @GetMapping("/getall")
     public Map<String, Object> getAllLaporan() {
         Map<String, Object> response = new HashMap<>();
@@ -35,6 +40,7 @@ public class LaporanController {
     }
 
     // GET detail laporan by ID - /api/laporan/get/{id}
+    @Operation(summary = "Ambil detail laporan", description = "Mengambil detail laporan berdasarkan ID")
     @GetMapping("/get/{id}")
     public Map<String, Object> getLaporanById(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -50,6 +56,7 @@ public class LaporanController {
     }
 
     // GET laporan by idJadwal - /api/laporan/jadwal/{idJadwal}
+    @Operation(summary = "Ambil laporan per jadwal", description = "Mengambil laporan berdasarkan id jadwal")
     @GetMapping("/jadwal/{idJadwal}")
     public Map<String, Object> getLaporanByIdJadwal(@PathVariable("idJadwal") Integer idJadwal) {
         Map<String, Object> response = new HashMap<>();
@@ -62,6 +69,7 @@ public class LaporanController {
     }
 
     // POST generate laporan baru - /api/laporan/generate
+    @Operation(summary = "Buat laporan baru", description = "Membuat laporan keuangan baru menggunakan data yang diberikan")
     @PostMapping("/generate")
     public Map<String, Object> generateLaporan(@RequestBody LaporanDTO dto) {
         Map<String, Object> response = new HashMap<>();
@@ -79,6 +87,7 @@ public class LaporanController {
     }
 
     // GET summary total pendapatan & transaksi (MongoTemplate Custom Query) - /api/laporan/summary
+    @Operation(summary = "Ambil ringkasan keuangan", description = "Mengambil ringkasan total pendapatan dan transaksi")
     @GetMapping("/summary")
     public Map<String, Object> getSummaryKeuangan() {
         Map<String, Object> response = new HashMap<>();
@@ -89,6 +98,7 @@ public class LaporanController {
     }
 
     // DELETE hapus laporan - /api/laporan/delete/{id}
+    @Operation(summary = "Hapus laporan", description = "Menghapus laporan berdasarkan ID")
     @DeleteMapping("/delete/{id}")
     public Map<String, Object> hapusLaporan(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -104,6 +114,7 @@ public class LaporanController {
     }
 
     // PUT update laporan - /api/laporan/update?id=xxx
+    @Operation(summary = "Update laporan", description = "Memperbarui laporan berdasarkan ID dan data yang diberikan")
     @PutMapping("/update")
     public Map<String, Object> updateLaporan(
             @RequestParam("id") String id,
@@ -122,6 +133,7 @@ public class LaporanController {
     }
 
     // POST reset dummy data - /api/laporan/reset-dummy
+    @Operation(summary = "Reset data dummy", description = "Mengembalikan data laporan dummy ke keadaan awal")
     @PostMapping("/reset-dummy")
     public Map<String, Object> resetDummyData() {
         Map<String, Object> response = new HashMap<>();

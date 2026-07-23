@@ -1,16 +1,23 @@
 package com.klinik.resep.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Document(collection = "resep")
+@Schema(name = "ResepModel", description = "Model data resep obat yang disimpan di MongoDB")
 public class ResepModel {
 
     @Id
+    @Schema(description = "ID unik resep", example = "6495c1a2f5e4c97bd9d3d5fa")
     private String id;
+
+    @Schema(description = "ID jadwal yang terkait dengan resep", example = "123", required = true)
     private Integer idJadwal;
+
+    @Schema(description = "Keluhan atau penyakit pasien", example = "Demam berdarah", required = true)
     private String penyakitKeluhan;
     private Integer idObat;
     private String namaObat;

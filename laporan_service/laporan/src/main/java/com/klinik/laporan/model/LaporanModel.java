@@ -1,16 +1,23 @@
 package com.klinik.laporan.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @Document(collection = "laporan")
+@Schema(name = "LaporanModel", description = "Model data laporan keuangan yang disimpan di MongoDB")
 public class LaporanModel {
 
     @Id
+    @Schema(description = "ID unik laporan", example = "6495c1a2f5e4c97bd9d3d5fa")
     private String id;
+
+    @Schema(description = "ID jadwal yang terkait dengan laporan", example = "123", required = true)
     private Integer idJadwal;
+
+    @Schema(description = "Nama pasien", example = "Budi Santoso", required = true)
     private String namaPasien;
     private Double hargaTindakan;
     private Double totalHargaObat;

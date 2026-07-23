@@ -21,8 +21,12 @@ import com.klinik.resep.dto.ResepDTO;
 import com.klinik.resep.model.ResepModel;
 import com.klinik.resep.service.ResepService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/resep")
+@Tag(name = "Resep Service", description = "API endpoints untuk layanan resep klinik")
 public class ResepController {
 
     @Autowired
@@ -32,6 +36,7 @@ public class ResepController {
     private DataSeederResep dataSeederResep;
 
     // GET semua resep - /api/resep/getall
+    @Operation(summary = "Ambil semua resep", description = "Mengambil daftar seluruh resep")
     @GetMapping("/getall")
     public Map<String, Object> getAllResep() {
         Map<String, Object> response = new HashMap<>();
@@ -43,6 +48,7 @@ public class ResepController {
     }
 
     // GET detail resep by ID - /api/resep/get/{id}
+    @Operation(summary = "Ambil detail resep", description = "Mengambil detail resep berdasarkan ID")
     @GetMapping("/get/{id}")
     public Map<String, Object> getResepById(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -58,6 +64,7 @@ public class ResepController {
     }
 
     // GET resep by idJadwal - /api/resep/jadwal/{idJadwal}
+    @Operation(summary = "Ambil resep per jadwal", description = "Mengambil resep berdasarkan id jadwal")
     @GetMapping("/jadwal/{idJadwal}")
     public Map<String, Object> getResepByIdJadwal(@PathVariable("idJadwal") Integer idJadwal) {
         Map<String, Object> response = new HashMap<>();
@@ -70,6 +77,7 @@ public class ResepController {
     }
 
     // GET resep by nama pasien - /api/v1/resep/pasien/{namaPasien}
+    @Operation(summary = "Ambil resep per pasien", description = "Mengambil resep berdasarkan nama pasien")
     @GetMapping("/pasien/{namaPasien}")
     public Map<String, Object> getResepByNamaPasien(@PathVariable("namaPasien") String namaPasien) {
         Map<String, Object> response = new HashMap<>();
@@ -82,6 +90,7 @@ public class ResepController {
     }
 
     // POST tambah resep baru - /api/resep/add
+    @Operation(summary = "Tambah resep baru", description = "Menambahkan resep obat baru menggunakan data yang diberikan")
     @PostMapping("/add")
     public Map<String, Object> tambahResep(@RequestBody ResepDTO dto) {
         Map<String, Object> response = new HashMap<>();
@@ -99,6 +108,7 @@ public class ResepController {
     }
 
     // PUT update resep - /api/resep/update?id=xxx
+    @Operation(summary = "Update resep", description = "Memperbarui resep berdasarkan ID dan data yang diberikan")
     @PutMapping("/update")
     public Map<String, Object> updateResep(
             @RequestParam("id") String id,
@@ -117,6 +127,7 @@ public class ResepController {
     }
 
     // DELETE hapus resep - /api/resep/delete/{id}
+    @Operation(summary = "Hapus resep", description = "Menghapus resep berdasarkan ID")
     @DeleteMapping("/delete/{id}")
     public Map<String, Object> hapusResep(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
@@ -132,6 +143,7 @@ public class ResepController {
     }
 
     // POST reset dummy data - /api/resep/reset-dummy
+    @Operation(summary = "Reset data dummy", description = "Mengembalikan data resep dummy ke keadaan awal")
     @PostMapping("/reset-dummy")
     public Map<String, Object> resetDummyData() {
         Map<String, Object> response = new HashMap<>();
