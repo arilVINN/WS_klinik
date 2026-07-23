@@ -1,0 +1,35 @@
+server:
+  port: 67
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: inventaris-service
+          uri: http://localhost:61
+          predicates:
+            - Path=/inventory, /inventory/**
+
+        - id: jadwal-service
+          uri: http://localhost:63
+          predicates:
+            - Path=/jadwal, /jadwal/**
+
+        - id: resep-service
+          uri: http://localhost:62
+          predicates:
+            - Path=/recipe, /recipe/**
+
+        - id: laporan-service
+          uri: http://localhost:64
+          predicates:
+            - Path=/laporan, /laporan/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:90/eureka
+  instance:
+    prefer-ip-address: true

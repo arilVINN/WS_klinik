@@ -21,6 +21,22 @@ public class Inventory {
     private String name;
     private Integer quantity;
     private String category;
-
     private Integer price;
+
+    // --- Methods dari Class Diagram ---
+    public int cekStok() {
+        return this.quantity != null ? this.quantity : 0;
+    }
+
+    public boolean kurangiStok(int jumlah) {
+        if (this.quantity != null && this.quantity >= jumlah) {
+            this.quantity -= jumlah;
+            return true;
+        }
+        return false;
+    }
+
+    public int getHargaObat() {
+        return this.price != null ? this.price : 0;
+    }
 }

@@ -35,4 +35,15 @@ public class JadwalRepository {
         }
         return list;
     }
+
+    public JadwalModel findById(int id_jadwal) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = firestore.collection(COLLECTION_NAME)
+                .document(String.valueOf(id_jadwal));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if (document.exists()) {
+            return document.toObject(JadwalModel.class);
+        }
+        return null;
+    }
 }

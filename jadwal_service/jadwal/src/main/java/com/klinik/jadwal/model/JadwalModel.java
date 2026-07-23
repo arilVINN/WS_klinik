@@ -5,7 +5,7 @@ public class JadwalModel {
     private String nama_pasien;
     private String jadwal_periksa;
     private String periksa_tindakan;
-    private double harga_periksa; // Changed to double to match DTO and prevent precision loss issues
+    private double harga_periksa;
     private String status;
 
     public int getId_jadwal() {
@@ -54,5 +54,18 @@ public class JadwalModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    // --- Methods dari Class Diagram ---
+    public void buatJadwal() {
+        System.out.println("Jadwal dibuat untuk pasien " + this.nama_pasien + " pada " + this.jadwal_periksa);
+    }
+
+    public void ubahStatus(String statusBaru) {
+        this.status = statusBaru;
+    }
+
+    public int getHargaTindakan() {
+        return (int) this.harga_periksa;
     }
 }

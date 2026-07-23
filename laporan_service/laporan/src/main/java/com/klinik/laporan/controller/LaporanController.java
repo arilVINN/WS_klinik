@@ -14,7 +14,7 @@ import com.klinik.laporan.model.LaporanModel;
 import com.klinik.laporan.service.LaporanService;
 
 @RestController
-@RequestMapping("/api/laporan")
+@RequestMapping("/laporan")
 public class LaporanController {
 
     @Autowired
@@ -65,20 +65,26 @@ public class LaporanController {
     @PostMapping("/generate")
     public Map<String, Object> generateLaporan(@RequestBody LaporanDTO dto) {
         Map<String, Object> response = new HashMap<>();
-        if (dto.getIdJadwal() == null || dto.getNamaPasien() == null) {
+        if (dto.getIdJadwal() == null) {
             response.put("status", "error");
-            response.put("message", "idJadwal dan namaPasien wajib diisi");
+            response.put("message", "idJadwal wajib diisi");
             return response;
         }
 
-        LaporanModel laporanBaru = laporanService.generateLaporan(dto);
-        response.put("status", "success");
-        response.put("message", "Laporan keuangan berhasil dibuat");
-        response.put("data", laporanBaru);
+        try {
+            LaporanModel laporanBaru = laporanService.generateLaporan(dto);
+            response.put("status", "success");
+            response.put("message", "Laporan keuangan berhasil dibuat");
+            response.put("data", laporanBaru);
+        } catch (Exception e) {
+            response.put("status", "error");
+            response.put("message", e.getMessage());
+        }
         return response;
     }
 
-    // GET summary total pendapatan & transaksi (MongoTemplate Custom Query) - /api/laporan/summary
+    // GET summary total pendapatan & transaksi (MongoTemplate Custom Query) -
+    // /api/laporan/summary
     @GetMapping("/summary")
     public Map<String, Object> getSummaryKeuangan() {
         Map<String, Object> response = new HashMap<>();

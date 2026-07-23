@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -46,8 +47,9 @@ public class ResepService {
         // Opsional: kirim notifikasi pengurangan stok obat ke inventaris_service (port 61)
         if (resep.getIdObat() != null && resep.getJumlahObat() != null) {
             try {
-                webClient.put()
-                        .uri("http://localhost:61/api/v1/inventaris/kurang-stok?id=" + resep.getIdObat() + "&jumlah=" + resep.getJumlahObat())
+                webClient.patch()
+                        .uri("http://localhost:61/inventaris/" + resep.getIdObat() + "/reduce-stock")
+                        .bodyValue(Map.of("quantity", resep.getJumlahObat()))
                         .retrieve()
                         .bodyToMono(String.class)
                         .subscribe(

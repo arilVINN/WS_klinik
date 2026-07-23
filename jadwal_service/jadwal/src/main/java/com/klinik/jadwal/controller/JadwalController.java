@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,12 @@ public class JadwalController {
     @Operation(summary = "Dapatkan semua jadwal", description = "Mengambil daftar semua jadwal pemeriksaan")
     public List<JadwalModel> getAllJadwal() {
         return js.getAllJadwal();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Dapatkan jadwal berdasarkan ID", description = "Mengambil data jadwal pemeriksaan berdasarkan ID")
+    public JadwalModel getJadwalById(@PathVariable int id) {
+        return js.getJadwalById(id);
     }
 }
 

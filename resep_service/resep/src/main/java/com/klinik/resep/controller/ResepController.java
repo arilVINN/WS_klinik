@@ -22,7 +22,7 @@ import com.klinik.resep.model.ResepModel;
 import com.klinik.resep.service.ResepService;
 
 @RestController
-@RequestMapping("/api/resep")
+@RequestMapping("/recipe")
 public class ResepController {
 
     @Autowired

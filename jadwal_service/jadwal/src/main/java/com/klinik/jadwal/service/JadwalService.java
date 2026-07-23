@@ -30,4 +30,13 @@ public class JadwalService {
             return java.util.Collections.emptyList();
         }
     }
+
+    public JadwalModel getJadwalById(int id) {
+        try {
+            return jr.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

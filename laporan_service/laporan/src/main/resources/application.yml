@@ -1,0 +1,20 @@
+server:
+  port: 64
+
+spring:
+  application:
+    name: laporan-service
+  data:
+    mongodb:
+      uri: mongodb+srv://fellymonap:2243@clusterws.ljzabqs.mongodb.net/db_ws_klinik_laporan?retryWrites=true&w=majority
+      database: db_ws_klinik_laporan
+  mongodb:
+    uri: mongodb+srv://fellymonap:2243@clusterws.ljzabqs.mongodb.net/db_ws_klinik_laporan?retryWrites=true&w=majority
+    database: db_ws_klinik_laporan
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:90/eureka
+  instance:
+    prefer-ip-address: true
