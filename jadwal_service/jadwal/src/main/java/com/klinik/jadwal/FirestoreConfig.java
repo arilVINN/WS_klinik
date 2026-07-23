@@ -2,9 +2,7 @@ package com.klinik.jadwal;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.cloud.FirestoreClient;
+import com.google.cloud.firestore.FirestoreOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,20 +13,23 @@ import java.io.IOException;
 @Configuration
 public class FirestoreConfig {
 
-    // Tambahkan titik dua dan default value jika key yaml tidak ditemukan
-    @Value("${gcp.firestore.credentials-path:classpath:serviceAccountKey.json}")
+    @Value("${app.firebase.config-path:classpath:serviceAccountKey.json}")
     private Resource credentialsResource;
+
+    @Value("${app.firebase.database-id:(default)}")
+    private String databaseId;
 
     @Bean
     public Firestore firestore() throws IOException {
-        FirebaseOptions options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(credentialsResource.getInputStream()))
+        GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsResource.getInputStream());
+
+        FirestoreOptions firestoreOptions = FirestoreOptions.getDefaultInstance().toBuilder()
+                .setCredentials(credentials)
+                .setDatabaseId(databaseId)
+                // Project ID will be automatically loaded from the serviceAccountKey.json
+                .setProjectId(((com.google.auth.oauth2.ServiceAccountCredentials) credentials).getProjectId())
                 .build();
 
-        if (FirebaseApp.getApps().isEmpty()) {
-            FirebaseApp.initializeApp(options);
-        }
-
-        return FirestoreClient.getFirestore();
+        return firestoreOptions.getService();
     }
 }

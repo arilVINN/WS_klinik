@@ -1,18 +1,18 @@
 package com.klinik.jadwal.model;
 
 public class JadwalModel {
-    private int id_jadwal;
+    private String id_jadwal;
     private String nama_pasien;
     private String jadwal_periksa;
     private String periksa_tindakan;
-    private double harga_periksa; // Changed to double to match DTO and prevent precision loss issues
+    private double harga_tindakan;
     private String status;
 
-    public int getId_jadwal() {
+    public String getId_jadwal() {
         return id_jadwal;
     }
 
-    public void setId_jadwal(int id_jadwal) {
+    public void setId_jadwal(String id_jadwal) {
         this.id_jadwal = id_jadwal;
     }
 
@@ -40,12 +40,12 @@ public class JadwalModel {
         this.periksa_tindakan = periksa_tindakan;
     }
 
-    public double getHarga_periksa() {
-        return harga_periksa;
+    public double getHarga_tindakan() {
+        return harga_tindakan;
     }
 
-    public void setHarga_periksa(double harga_periksa) {
-        this.harga_periksa = harga_periksa;
+    public void setHarga_tindakan(double harga_tindakan) {
+        this.harga_tindakan = harga_tindakan;
     }
 
     public String getStatus() {
