@@ -46,7 +46,7 @@ public class LaporanService {
         Map<String, Object> jadwal = null;
         try {
             jadwal = webClient.get()
-                    .uri("http://localhost:63/jadwal/" + dto.getIdJadwal())
+                    .uri("http://localhost:63/schedule/" + dto.getIdJadwal())
                     .retrieve()
                     .bodyToMono(Map.class)
                     .block();

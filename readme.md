@@ -106,26 +106,24 @@ Contoh data yang diolah:
 - Metode pembayaran
 - Tanggal transaksi
 
-## Penyimpanan Data
+## Penyimpanan Data (Polyglot Persistence)
+Sistem ini mengimplementasikan konsep *Polyglot Persistence*, yaitu penggunaan berbagai jenis database sesuai dengan karakteristik dan kebutuhan masing-masing *service*.
 
-### MySQL
-Digunakan untuk data yang bersifat relasional dan konsisten, seperti:
-- Data inventaris barang dan obat
-- Data jadwal pemeriksaan
-- Data resep obat
-- Data transaksi keuangan
+### 1. MySQL (Inventaris Service)
+Digunakan khusus untuk data yang bersifat relasional dan membutuhkan konsistensi transaksi (ACID) yang ketat.
+- **Kenapa MySQL:** Inventaris obat membutuhkan sistem transaksi yang kaku untuk mencegah *race condition* (seperti stok minus akibat akses bersamaan) dan menjaga integritas relasi antar data (Obat, Kategori, Supplier).
+- **Kenapa bukan NoSQL (Firebase/MongoDB):** NoSQL umumnya menggunakan sistem *eventual consistency* yang berisiko menyebabkan hilangnya penguncian transaksi (*lost update*) pada perhitungan stok yang sangat krusial. Selain itu, manajemen relasi *(JOIN)* di NoSQL lebih rumit untuk data yang sangat terstruktur seperti inventaris.
 
-### MongoDB
-Digunakan untuk data dokumen yang lebih fleksibel, misalnya:
-- Riwayat pemeriksaan pasien dalam format dokumen
-- Data log aktivitas atau catatan tambahan
-- Informasi yang sering berubah tanpa skema yang kaku
+### 2. Firestore / Firebase (Jadwal Service)
+Digunakan untuk data antrean dan jadwal pemeriksaan yang membutuhkan pembaruan *real-time*.
+- **Kenapa Firebase:** Memiliki kemampuan *real-time sync* dan *push-based update*. Saat dokter mengubah status pemeriksaan pasien, informasi antrean di layar resepsionis dan pasien akan ter-update seketika tanpa perlu *refresh*.
+- **Kenapa bukan SQL/MongoDB:** MySQL dan MongoDB bersifat *pull-based*. Jika digunakan untuk antrean *real-time*, aplikasi harus melakukan *polling* (menarik data berulang-ulang setiap detik) yang akan memberikan beban (*overhead*) sangat besar pada server database.
 
-### Firestore (Google)
-Digunakan untuk kebutuhan data real-time atau data pendukung aplikasi, misalnya:
-- Status antrean pasien
-- Update jadwal secara cepat
-- Notifikasi atau data yang perlu diakses secara real-time
+### 3. MongoDB (Resep & Laporan Service)
+Digunakan untuk data berbentuk dokumen yang strukturnya fleksibel (*schema-less*) dan membutuhkan kecepatan pembacaan tinggi.
+- **Kenapa MongoDB untuk Resep:** Sebuah resep memiliki bentuk yang dinamis (jumlah obat dan instruksi bisa berbeda-beda untuk tiap pasien). MongoDB memungkinkan seluruh resep disimpan dalam satu dokumen JSON utuh.
+- **Kenapa MongoDB untuk Laporan:** Laporan adalah agregasi (gabungan) snapshot data dari berbagai service. Menyimpan dokumen rekapitulasi data yang besar dan tidak berskema sangat optimal di MongoDB.
+- **Kenapa bukan MySQL:** Menyimpan resep dinamis di MySQL mengharuskan pembuatan banyak tabel dan query `JOIN` berlapis yang lambat dan kaku. Menyimpan rangkuman dokumen agregasi kompleks (seperti laporan) di tabel SQL akan menghilangkan manfaat relasional SQL itu sendiri.
 
 ## DTO (Data Transfer Object)
 Setiap service menggunakan DTO untuk memisahkan model data internal dengan format data yang dikirimkan melalui API. Hal ini berguna untuk:
