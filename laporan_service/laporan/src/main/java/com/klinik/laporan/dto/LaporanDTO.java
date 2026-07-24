@@ -1,10 +1,22 @@
 package com.klinik.laporan.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "LaporanRequest", description = "Payload untuk membuat laporan keuangan klinik gigi")
 public class LaporanDTO {
+    @Schema(description = "ID jadwal pemeriksaan", example = "jadwal-001")
     private String idJadwal;
+
+    @Schema(description = "Nama pasien", example = "Siti Aminah")
     private String namaPasien;
+
+    @Schema(description = "Biaya tindakan perawatan", example = "250000")
     private Double hargaTindakan;
+
+    @Schema(description = "Total biaya obat yang dipakai", example = "120000")
     private Double totalHargaObat;
+
+    @Schema(description = "Metode pembayaran", example = "TUNAI")
     private String metodePembayaran;
 
     public LaporanDTO() {}

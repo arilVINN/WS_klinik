@@ -1,13 +1,31 @@
 package com.klinik.resep.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "ResepRequest", description = "Payload untuk membuat resep obat pasien klinik gigi")
 public class ResepDTO {
+    @Schema(description = "ID jadwal pemeriksaan", example = "jadwal-001")
     private String idJadwal;
+
+    @Schema(description = "Keluhan atau penyakit pasien", example = "Gigi berlubang")
     private String penyakitKeluhan;
+
+    @Schema(description = "ID obat", example = "10")
     private Long idObat;
+
+    @Schema(description = "Nama obat", example = "Amoxicillin")
     private String namaObat;
+
+    @Schema(description = "Jumlah obat", example = "10")
     private Integer jumlahObat;
+
+    @Schema(description = "Nama pasien", example = "Siti Aminah")
     private String namaPasien;
+
+    @Schema(description = "Dosis dan aturan pakai", example = "3x1 sehari setelah makan")
     private String dosisAturanPakai;
+
+    @Schema(description = "Harga satuan obat", example = "15000")
     private Double hargaSatuan;
 
     public ResepDTO() {}

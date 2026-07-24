@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/schedule")
-@Tag(name = "Jadwal", description = "API untuk mengelola jadwal layanan klinik")
+@Tag(name = "Jadwal", description = "API untuk mengelola jadwal layanan klinik gigi")
 public class JadwalController {
     @Autowired
     private JadwalService js;
 
     @PostMapping
-    @Operation(summary = "Buat jadwal baru", description = "Menambahkan jadwal pemeriksaan pasien ke sistem")
+    @Operation(summary = "Buat jadwal pemeriksaan", description = "Menambahkan jadwal pemeriksaan pasien ke sistem klinik gigi")
     public boolean createJadwal(@RequestBody JadwalModel jadwal) {
         return js.createJadwal(jadwal);
     }
 
     @GetMapping
-    @Operation(summary = "Dapatkan semua jadwal", description = "Mengambil daftar semua jadwal pemeriksaan")
+    @Operation(summary = "Daftar semua jadwal", description = "Mengambil daftar semua jadwal pemeriksaan pasien")
     public List<JadwalModel> getAllJadwal() {
         return js.getAllJadwal();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Dapatkan jadwal by ID", description = "Mengambil detail jadwal pemeriksaan berdasarkan ID Firestore")
+    @Operation(summary = "Detail jadwal", description = "Mengambil detail jadwal pemeriksaan berdasarkan ID")
     public JadwalModel getJadwalById(@PathVariable("id") String id) {
         return js.getJadwalById(id);
     }

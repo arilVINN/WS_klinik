@@ -1,10 +1,22 @@
 package com.klinik.jadwal.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "JadwalCreateRequest", description = "Payload untuk membuat jadwal pemeriksaan klinik gigi")
 public class JadwalCreateDTO {
+    @Schema(description = "Nama pasien", example = "Siti Aminah")
     private String nama_pasien;
+
+    @Schema(description = "Waktu pemeriksaan", example = "2026-07-24 09:00")
     private String jadwal_periksa;
+
+    @Schema(description = "Jenis tindakan yang dilakukan", example = "Scaling gigi")
     private String periksa_tindakan;
-    private double harga_periksa; // Changed to double to prevent precision loss errors
+
+    @Schema(description = "Biaya pemeriksaan", example = "250000")
+    private double harga_periksa;
+
+    @Schema(description = "Status jadwal", example = "Booked")
     private String status;
 
     public String getNama_pasien() {

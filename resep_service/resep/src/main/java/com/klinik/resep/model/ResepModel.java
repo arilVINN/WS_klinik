@@ -5,20 +5,44 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Document(collection = "resep")
+@Schema(name = "Resep", description = "Data resep obat pasien klinik gigi")
 public class ResepModel {
 
     @Id
+    @Schema(description = "ID resep", example = "resep-001")
     private String id;
+
+    @Schema(description = "ID jadwal pemeriksaan", example = "jadwal-001")
     private String idJadwal;
+
+    @Schema(description = "Keluhan atau penyakit pasien", example = "Gigi berlubang")
     private String penyakitKeluhan;
+
+    @Schema(description = "ID obat", example = "10")
     private Long idObat;
+
+    @Schema(description = "Nama obat", example = "Amoxicillin")
     private String namaObat;
+
+    @Schema(description = "Jumlah obat", example = "10")
     private Integer jumlahObat;
+
+    @Schema(description = "Nama pasien", example = "Siti Aminah")
     private String namaPasien;
+
+    @Schema(description = "Dosis dan aturan pakai", example = "3x1 sehari setelah makan")
     private String dosisAturanPakai;
+
+    @Schema(description = "Harga satuan obat", example = "15000")
     private Double hargaSatuan;
+
+    @Schema(description = "Total harga obat", example = "150000")
     private Double totalHargaObat;
+
+    @Schema(description = "Tanggal pembuatan resep", example = "2026-07-24T09:00:00")
     private LocalDateTime tanggalResep;
 
     public ResepModel() {

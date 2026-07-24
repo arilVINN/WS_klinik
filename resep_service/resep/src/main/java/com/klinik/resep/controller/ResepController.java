@@ -21,8 +21,12 @@ import com.klinik.resep.dto.ResepDTO;
 import com.klinik.resep.model.ResepModel;
 import com.klinik.resep.service.ResepService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/recipe")
+@Tag(name = "Resep", description = "API untuk mengelola resep obat pasien klinik gigi")
 public class ResepController {
 
     @Autowired
@@ -33,6 +37,7 @@ public class ResepController {
 
     // GET semua resep - /api/resep/getall
     @GetMapping("/getall")
+    @Operation(summary = "Daftar semua resep", description = "Mengambil seluruh resep obat yang tercatat di klinik gigi")
     public Map<String, Object> getAllResep() {
         Map<String, Object> response = new HashMap<>();
         List<ResepModel> list = resepService.getAllResep();
@@ -44,6 +49,7 @@ public class ResepController {
 
     // GET detail resep by ID - /api/resep/get/{id}
     @GetMapping("/get/{id}")
+    @Operation(summary = "Detail resep", description = "Mengambil satu resep obat berdasarkan ID")
     public Map<String, Object> getResepById(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
         Optional<ResepModel> optionalResep = resepService.getResepById(id);
@@ -59,6 +65,7 @@ public class ResepController {
 
     // GET resep by idJadwal - /api/resep/jadwal/{idJadwal}
     @GetMapping("/jadwal/{idJadwal}")
+    @Operation(summary = "Resep berdasarkan jadwal", description = "Mengambil resep obat yang terkait dengan jadwal pemeriksaan tertentu")
     public Map<String, Object> getResepByIdJadwal(@PathVariable("idJadwal") String idJadwal) {
         Map<String, Object> response = new HashMap<>();
         List<ResepModel> list = resepService.getResepByIdJadwal(idJadwal);
@@ -71,6 +78,7 @@ public class ResepController {
 
     // GET resep by nama pasien - /api/v1/resep/pasien/{namaPasien}
     @GetMapping("/pasien/{namaPasien}")
+    @Operation(summary = "Resep berdasarkan pasien", description = "Mengambil semua resep obat untuk pasien tertentu")
     public Map<String, Object> getResepByNamaPasien(@PathVariable("namaPasien") String namaPasien) {
         Map<String, Object> response = new HashMap<>();
         List<ResepModel> list = resepService.getResepByNamaPasien(namaPasien);
@@ -83,6 +91,7 @@ public class ResepController {
 
     // POST tambah resep baru - /api/resep/add
     @PostMapping("/add")
+    @Operation(summary = "Tambah resep obat", description = "Membuat resep obat baru untuk pasien klinik gigi")
     public Map<String, Object> tambahResep(@RequestBody ResepDTO dto) {
         Map<String, Object> response = new HashMap<>();
         if (dto.getIdJadwal() == null || dto.getIdJadwal().trim().isEmpty() || dto.getPenyakitKeluhan() == null) {
@@ -100,6 +109,7 @@ public class ResepController {
 
     // PUT update resep - /api/resep/update?id=xxx
     @PutMapping("/update")
+    @Operation(summary = "Perbarui resep", description = "Memperbarui data resep obat yang telah dibuat")
     public Map<String, Object> updateResep(
             @RequestParam("id") String id,
             @RequestBody ResepDTO dto) {
@@ -118,6 +128,7 @@ public class ResepController {
 
     // DELETE hapus resep - /api/resep/delete/{id}
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Hapus resep", description = "Menghapus satu resep obat berdasarkan ID")
     public Map<String, Object> hapusResep(@PathVariable("id") String id) {
         Map<String, Object> response = new HashMap<>();
         boolean deleted = resepService.hapusResep(id);
@@ -133,6 +144,7 @@ public class ResepController {
 
     // POST reset dummy data - /api/resep/reset-dummy
     @PostMapping("/reset-dummy")
+    @Operation(summary = "Reset data dummy", description = "Mengembalikan data dummy resep obat untuk pengujian")
     public Map<String, Object> resetDummyData() {
         Map<String, Object> response = new HashMap<>();
         List<ResepModel> list = dataSeederResep.seedDummyData();

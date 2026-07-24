@@ -1,11 +1,25 @@
 package com.klinik.jadwal.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "Jadwal", description = "Data jadwal pemeriksaan pasien klinik gigi")
 public class JadwalModel {
+    @Schema(description = "ID jadwal", example = "jadwal-001")
     private String id_jadwal;
+
+    @Schema(description = "Nama pasien", example = "Siti Aminah")
     private String nama_pasien;
+
+    @Schema(description = "Waktu pemeriksaan", example = "2026-07-24 09:00")
     private String jadwal_periksa;
+
+    @Schema(description = "Jenis tindakan", example = "Scaling gigi")
     private String periksa_tindakan;
+
+    @Schema(description = "Biaya pemeriksaan", example = "250000")
     private double harga_tindakan;
+
+    @Schema(description = "Status jadwal", example = "Booked")
     private String status;
 
     public String getId_jadwal() {
